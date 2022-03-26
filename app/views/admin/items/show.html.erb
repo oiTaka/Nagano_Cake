@@ -1,0 +1,22 @@
+<div id="container">
+ <div class="row">
+  <h3 class="offset-2 p-5 title-text text">商品詳細</h3>
+ </div>
+
+ <div class="row">
+  <div class="offset-2 pl-5 mt-5 col-3">
+   <div><%= attachment_image_tag @item, :image, :fill, 300, 200, fallback: "no_image.jpg", size: "300x200" %></div>
+  </div>
+  <div class="mt-5 col-md-1">
+    <p>商品名</p>
+    <p></p>商品説明</p>
+    <p>税込価格<br/>(税抜価格)</p>
+  </div>
+  <div class="mt-5 col-md-6">
+    <p><%= @item.name %></p>
+    <p><%= @item.introduction %></p>
+    <p><%= @item.add_tax_price.to_s(:delimited) %>(<%= @item.price %>) 円
+  </div>
+  <div class="mx-auto mt-5"><%= link_to "編集する", edit_admin_item_path, class: "btn-lg btn-success" %></div>
+ </div>
+</div>

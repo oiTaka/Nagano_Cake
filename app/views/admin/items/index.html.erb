@@ -1,0 +1,37 @@
+<div class="container my-5">
+ <div class="row">
+  <div class="col-6">
+   <h3 class="offset-1 title-text text">商品一覧</h3>
+  </div>
+  <div class="col-6">
+   <div class="text-right"><%= link_to (new_admin_item_path) do %><i class="fas fa-plus-circle fa-3x text-dark"></i><% end %></div>
+  </div>
+ </div>
+
+ <div class="row mt-3">
+  <table class="table table-hover">
+   <thead>
+    <tr class="table-active text">
+     <th>商品ID</th>
+     <th>商品名</th>
+     <th>税抜価格</th>
+     <th></th>
+     <th></th>
+    </tr>
+   </thead>
+
+   <tboy>
+    <% @items.each do |item| %>
+    <tr class="light-text">
+     <td><%= item.id %></td>
+     <td><%= link_to item.name, admin_item_path(item.id), class: 'text-dark' %></td>
+     <td><%= item.price %></td>
+     <td></td>
+     <td></td>
+    </tr>
+    <% end %>
+   </tboy>
+  </table>
+  <div class=""><%= paginate @items %></div>
+ </div>
+</div>

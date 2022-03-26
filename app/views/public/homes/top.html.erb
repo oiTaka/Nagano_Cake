@@ -1,0 +1,53 @@
+
+  <div class="top-container">
+
+    <div class="container">
+      <div class="row slide-box">
+        <div class="col-md-12 text-center">
+          <div class="image_box">
+            <div id="theTarget">
+              <div class="image1"></div>
+              <div class="image2"></div>
+              <div class="image3"></div>
+              <div class="image4"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="pt-5 mt-5" style="height:300px">
+        <p class="pt-5" style="text-align:center">
+          ようこそ、ながのCAKEへ！</br>
+          このサイトは、ケーキ販売のECサイトになります。</br>
+          会員でない方も商品の閲覧はできますが、</br>
+          購入には会員登録が必要になります。
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="main-container">
+    <div class="my-5">
+      <h2 class="offset-1">新着商品</h2>
+    </div>
+    <div class="container">
+      <div class="main-box">
+        <div class="row">
+          <% @items.last(4).each do |item| %>
+            <div class="col-md-3">
+              <div class="image-link"><%= link_to item_path(item.id) do %>
+              <%= attachment_image_tag item, :image, :fill, 150, 150, fallback: "no_image.jpg", size: "150x150" %></div>
+              <% end %>
+              <h6 class="pt-2 pl-1"><%= item.name %></h6>
+              <p class="pl-1">￥<%= item.price %></p>
+            </div>
+          <% end %>
+        </div>
+        <div class="row">
+          <div class="offset-10"><%= link_to "全ての商品を見る>", items_path %></div>
+        </div>
+      </div>
+    </div>
+  </div>

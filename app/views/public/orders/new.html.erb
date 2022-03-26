@@ -1,0 +1,55 @@
+<div class="container my-5">
+
+  <div class="row">
+    <h3 class="mt-2 mb-5 offset-3 title-text text">
+	  注文情報入力
+	</h3>
+  </div>
+
+  <div class="row">
+	<div class="col-12 offset-1">
+    <%= form_with model: @order, url: orders_confirm_path, method: :POST, local: true do |f| %>
+	    <%= f.hidden_field :customer_id, :value => current_customer.id %>
+
+			<h4 class="">支払い方法</h4>
+      <div class="light-text offset-1 pl-3">
+				<%= f.radio_button :method_of_payment, :クレジットカード, checked: true %>
+				<%= f.label :method_of_payment, "クレジットカード" %></br>
+				<%= f.radio_button :method_of_payment, :銀行振込 %>
+				<%= f.label :method_of_payment, "銀行振込" %>
+      </div>
+
+			<h4 class="">お届け先</h4>
+			<div class="form-check offset-1">
+				<input class="form_check_input" type="radio" name="order_address" id="customer_address" value="option1" checked>
+				<label class="form_check_label text" for="customer_address">
+					ご自身の住所
+				</label></br>
+				<div class="light-text pl-3">
+				  〒<%= current_customer.postal_code %> <%= current_customer.address %></br>
+				　　<%= current_customer.last_name %><%= current_customer.first_name %>
+			  </div>
+			</div>
+
+			<div class="form-check offset-1">
+				<input class="form_check_input" type="radio" name="order_address" id="new_address" value="option3" >
+				<label class="form_check_label text" for="new_address">
+					新しいお届け先
+				</label></br>
+				<div class="text pl-3">
+					<%= f.label :zip_code, "郵便番号（ハイフンなし）" %>
+					<%= f.text_field :zip_code, placeholder: "0000000", :size => "30" %></br>
+					<%= f.label :address, "住所　　　　　　　　　　" %>
+					<%= f.text_field :address, placeholder: "東京都渋谷区", :size => "60" %></br>
+					<%= f.label :name, "宛名　　　　　　　　　　" %>
+					<%= f.text_field :name, placeholder: "令和道子", :size => "30" %></br>
+				</div>
+			</div>
+
+      <div class="offset-4 mt-3 text">
+				<%= f.submit "確認画面へ進む", class: "btn btn-primary ", method: :POST %>
+			</div>
+	  <% end %>
+		</div>
+  </div>
+</div>
